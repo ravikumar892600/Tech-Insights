@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Code,
   Coffee,
@@ -7,6 +6,7 @@ import {
   Download,
   FolderOpen,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -57,7 +57,6 @@ function Hero() {
       className="min-h-screen bg-gradient-to-br from-[#eef2ff] via-white to-[#dbe4ff]"
     >
       <div className="max-w-6xl mx-auto px-6 py-20 min-h-[85vh] flex flex-col md:flex-row items-center justify-between gap-12">
-
         {/* Left Side */}
         <div className="w-full md:w-1/2">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-[#354770] text-sm font-medium mb-6">
@@ -73,10 +72,9 @@ function Hero() {
           </h2>
 
           <p className="text-gray-600 text-lg leading-8 mt-6 max-w-xl">
-            I build modern, responsive and scalable web applications using Java,
-            React, Node.js and MongoDB. Passionate about software development,
-            problem solving and creating digital experiences that make an
-            impact.
+            I build modern and scalable web applications using Java and
+            full-stack technologies. Passionate about problem solving and
+            creating impactful digital solutions.
           </p>
 
           {/* Buttons */}
@@ -157,7 +155,6 @@ function Hero() {
             <span className="text-sm font-medium">React</span>
           </div>
         </div>
-
       </div>
     </section>
   );

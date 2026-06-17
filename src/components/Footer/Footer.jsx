@@ -1,7 +1,5 @@
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-
+import { FaGithub, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6"; // यहाँ FaXTwitter जोड़ा है और fa6 का यूज़ किया है
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
-
 import { HashLink } from "react-router-hash-link";
 
 function Footer() {
@@ -46,15 +44,6 @@ function Footer() {
                 <FaGithub size={22} />
               </a>
 
-              {/* <a
-                href="https://x.com/ravikumar892600"
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition duration-300"
-              >
-                <FaXTwitter size={22} />
-              </a> */}
-
               <a
                 href="https://www.linkedin.com/in/ravikumar892600/"
                 target="_blank"
@@ -71,6 +60,15 @@ function Footer() {
                 className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition duration-300"
               >
                 <FaInstagram size={22} />
+              </a>
+
+              <a
+                href="https://x.com/ravikumar892600"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition duration-300"
+              >
+                <FaXTwitter size={22} />
               </a>
             </div>
           </div>
