@@ -59,7 +59,7 @@ function Hero() {
       <div className="max-w-6xl mx-auto px-6 py-20 min-h-[85vh] flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Left Side */}
         <div className="w-full md:w-1/2">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-[#354770] text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-[#354770] text-sm font-medium mb-6">
             🟢 Available for Opportunities
           </div>
 
