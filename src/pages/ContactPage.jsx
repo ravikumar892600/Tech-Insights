@@ -13,6 +13,8 @@ function ContactPage() {
   });
 
   const [errors, setErrors] = useState({});
+  // 1. Loading state add ki
+  const [isSending, setIsSending] = useState(false);
 
   const validate = () => {
     let newErrors = {};
@@ -39,16 +41,27 @@ function ContactPage() {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: "",
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validate()) return;
+
+    // 2. Loading start ki
+    setIsSending(true);
 
     const templateParams = {
       name: formData.name,
@@ -58,12 +71,11 @@ function ContactPage() {
     };
 
     try {
-      // Mail to You
       await emailjs.send(
         "service_n1ld08z",
         "template_ccf5crf",
         templateParams,
-        "35l8KJhvRYJCCRmUL",
+        "35l8KJhvRYJCCRmUL"
       );
 
       alert("✅ Message Sent Successfully!");
@@ -79,6 +91,9 @@ function ContactPage() {
     } catch (error) {
       console.error(error);
       alert("❌ Failed to send message");
+    } finally {
+      // 3. Email send hone ke baad (ya error aane par) loading stop ki
+      setIsSending(false);
     }
   };
 
@@ -208,11 +223,62 @@ function ContactPage() {
                   )}
                 </div>
 
-                {/* Button */}
+                {/* Updated Button with Loader & Icons */}
                 <button
                   type="submit"
-                  className="w-full bg-[#354770] text-white py-4 rounded-xl font-semibold cursor-pointer shadow-lg hover:bg-[#2d3b5f] hover:shadow-[0_15px_35px_rgba(53,71,112,0.4)] hover:-translate-y-1 active:translate-y-0 active:shadow-md transition-all duration-300" >
-                  Submit Message
+                  disabled={isSending}
+                  className={`w-full bg-[#354770] text-white py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 ${
+                    isSending
+                      ? "opacity-70 cursor-not-allowed"
+                      : "cursor-pointer hover:bg-[#2d3b5f] hover:shadow-[0_15px_35px_rgba(53,71,112,0.4)] hover:-translate-y-1 active:translate-y-0 active:shadow-md"
+                  }`}
+                >
+                  {isSending ? (
+                    <>
+                      {/* Gol-Gol ghumne wala SVG Spinner */}
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          type="text"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Submit Message
+                      {/* Normal Send Icon (Paper Plane) */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+                        />
+                      </svg>
+                    </>
+                  )}
                 </button>
               </form>
             </div>
